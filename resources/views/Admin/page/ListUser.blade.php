@@ -13,71 +13,64 @@
             text-transform: uppercase
         }
 
+        .fa-passwd-reset>.fa-lock,
+        .fa-passwd-reset>.fa-key {
+            font-size: 0.85rem;
+        }
+
     </style>
 
     {{-- Kết quả học tập --}}
     <div class="container">
-        <div class="row">
+        <div class="user">
             <h4 class="d-flex justify-content-center mb-5 mt-4">Danh sách User</h4>
         </div>
-        <div class="row">
+        <div class="user">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         {{-- 'tenmh','sotc','lanthi','diem','students.tensv','.students.lop','students.tenkhoa' --}}
                         <th scope="col">#</th>
                         <th scope="col">User Name</th>
-                        <th scope="col"></th>
-                        <th scope="col">Tên môn học</th>
-                        <th scope="col">Điểm</th>
-                        <th scope="col">Số tín chỉ</th>
-                        <th scope="col">lần thi</th>
-                        <th scope="col">Lớp</th>
-                        <th scope="col">Khoa</th>
+                        <th scope="col">email</th>
                         <th scope="col" colspan="2">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     <?php $pos = 0; ?>
-                  @if (count($scores) >0)
-                  @foreach ($scores as $row)
-                  <tr>
+                    @if (count($users) > 0)
+                        @foreach ($users as $user)
+                            <tr>
 
-                      {{-- <td>{{ $row->id}}</td> --}}
-                      <td>{{ ++$pos }}</td>
-                      <td class="sv name">{{ $row->tensv }}</td>
-                      <td class="sv name">{{ $row->masv }}</td>
-                      <td>{{ $row->tenmh }}</td>
-                      <td>{{ $row->diem }}</td>
-                      <td>{{ $row->sotc }}</td>
-                      <td>{{ $row->lanthi }}</td>
-                      <td>{{ $row->lop }}</td>
-                      <td>{{ $row->tenkhoa }}</td>
-                      <td>
-                          <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">
-                              <i class="fa fa-pen" style="font-size: 10px;"></i>
-                          </a>
-                      </td>
-                      <td>
-                          {{-- href="/admin/delete" --}}
-                          <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá?')"
-                              href="{{ route('scores-delete', $row->id) }}">
-                              <i class="fa fa-trash"></i>
-                          </a>
+                                {{-- <td>{{ $user->id}}</td> --}}
+                                <td>{{ ++$pos }}</td>
+                                <td class="sv name">{{ $user->name }}</td>
+                                <td class="sv name">{{ $user->email }}</td>
+                                <td>
+                                    <a href="/admin/reset-pass/{{ $user->id }}" class="btn btn-primary">
+                                        <span class="fa-passwd-reset fa-stack">
+                                            <i class="fa fa-undo fa-stack-2x"></i>
+                                            <i class="fa fa-lock fa-stack-1x"></i>
+                                        </span>
+                                        Reset pass
+                                    </a>
+                                </td>
+                                <td>
+                                    {{-- href="/admin/delete" --}}
+                                    <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá user? Hành động này không thể khôi phục!!')"
+                                        href="{{ route('user-delete', $user->id) }}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
 
-                      </td>
-                  </tr>
-                 @endforeach
-                                      
-                  @else
-                      <tr>
-                          <td colspan="10">Không có dữ liệu sinh viên <a href="/form-sv">Thêm ngay</a></td>
-                      </tr>
-                  @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                    @endif
                 </tbody>
             </table>
         </div>
     </div>
 
-    @endsection
+@endsection

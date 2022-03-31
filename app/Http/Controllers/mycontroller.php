@@ -127,70 +127,40 @@ class mycontroller extends Controller
     }
 
 
-    public function saveInvoice(Request $request)
-    {
-        // Get Value from Form
-        //         dd($request->all());
-
-        $message = [];
-        $validator = Validator::make($request->all(), [
-            'invoiceNo' => 'required | size:4 | unique:invoices, "invoiceNo"',
-            'invoiceDate' => 'required',
-            'memberId' => 'required  ',
-            'productId' => 'required ',
-            'quantity' => 'required ',
-            'price' => 'required ',
-        ], $message);
-
-        if ($validator->fails()) {
-            return redirect('/form-invoice')->withErrors($validator)->withInput();
-        } else {
-            $invoiceNo = $request->input('invoiceNo');
-            $invoiceDate = $request->input('invoiceDate');
-            $memberId = $request->input('memberId');
-            $productId = $request->input('productId');
-            $quantity = $request->input('quantity');
-            $Price = $request->input('price');
-
-
-            DB::insert('insert into  invoices(InvoiceNo, InvoiceDate, MemberId, ProductId, Quantity, Price)
-                 values (?,?,?,?,?,?)', [$invoiceNo, $invoiceDate, $memberId, $productId, $quantity, $Price]);
-            return view('FormInvoices', ['mess' => 'OK']);
-        }
-    }
-
 
 
     public function showAdmin(Request $request)
     {
         // Query data by database
         $scores = DB::table('scores')
-                        ->select('scores.id','tenmh','sotc','lanthi','diem','students.tensv','.students.lop','students.tenkhoa','students.masv')
-                        ->join('students','students.masv','=','scores.masv')
-                        ->groupBy('scores.id','tenmh','sotc','lanthi','diem','students.tensv','.students.lop','students.tenkhoa','students.masv')
-                        ->get();
+            ->select('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', '.students.lop', 'students.tenkhoa', 'students.masv')
+            ->join('students', 'students.masv', '=', 'scores.masv')
+            ->groupBy('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', '.students.lop', 'students.tenkhoa', 'students.masv')
+            ->get();
         // dd($scores);
-    
-            return view('admin/page/AdminDashboard', compact('scores'));
+
+        return view('admin/page/AdminDashboard', compact('scores'));
     }
 
 
 
-    public function editDiem(Request $request,$id){
+    public function editDiem(Request $request, $id)
+    {
         $scores = DB::table('scores')
-        ->select('*')
-        ->where('id','=',$id)
-        ->get();
+            ->select('*')
+            ->where('id', '=', $id)
+            ->get();
 
         // dd($scores);
 
-        return view('admin/page/EditScore',compact('scores'));
+        return view('admin/page/EditScore', compact('scores'));
     }
 
 
     // updateDiem
 
-    public function updateDiem(Request $request){
+    public function updateDiem(Request $request)
+    {
         $message = [];
         $validator = Validator::make($request->all(), [
             'tenmh' => 'required ',
@@ -202,27 +172,60 @@ class mycontroller extends Controller
             return redirect('/form-score')->withErrors($validator)->withInput();
         } else {
             $id = $request->input('id');
-          
+
             $tenmh = $request->input('tenmh');
             $lanthi = $request->input('lanthi');
             $diem = $request->input('diem');
 
-           Db::table('scores')
-                ->where('id',$id)
-                ->update(['tenmh'=>$tenmh, 'diem'=>$diem,'lanthi'=>$lanthi]);
+            Db::table('scores')
+                ->where('id', $id)
+                ->update(['tenmh' => $tenmh, 'diem' => $diem, 'lanthi' => $lanthi]);
 
             return view('admin/page/EditScore', ['mess' => 'Cập nhật thành công']);
         }
-
-        
     }
 
 
-    public function delete(Request $request,$id){
-       DB::table('scores')
-        ->where('id', '=', $id)
-        ->delete();
+    public function delete(Request $request, $id)
+    {
+        DB::table('scores')
+            ->where('id', '=', $id)
+            ->delete();
 
         return redirect('/admin/dashboard');
+    }
+
+
+    // showAllUser
+    public function showAllUser(Request $request)
+    {
+        $users = DB::table('users')->get();
+        // dd($users);
+
+        return view('admin/page/ListUser', compact('users'));
+    }
+
+
+    // resetPassword
+    public function resetPassword(Request $request, $id)
+    {
+        // dd($id);
+        $password = md5('abcd1234');
+
+        Db::table('users')
+            ->where('id', $id)
+            ->update(['password' => $password]);
+
+        return redirect('/admin/list-user');
+    }
+
+    // deleteUser
+    public function deleteUser(Request $request, $id)
+    {
+        DB::table('users')
+            ->where('id', '=', $id)
+            ->delete();
+
+        return redirect('/admin/list-user');
     }
 }

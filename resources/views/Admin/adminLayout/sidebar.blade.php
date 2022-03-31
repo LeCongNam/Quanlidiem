@@ -70,11 +70,11 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>User</span>
+            <span>Quản lí User</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">User Feature:</h6>
+                <h6 class="collapse-header"> User:</h6>
                 <a class="collapse-item" href="/admin/list-user">Danh Sách User</a>
             </div>
         </div>
