@@ -54,7 +54,7 @@
                         {{ Form::number('sotc', $row->sotc, ['class' => 'form-control', 'readonly' => 'true']) }}
 
                         {{ Form::label('diem', 'Điểm') }}
-                        {{ Form::number('diem', $row->diem, ['class' => 'form-control']) }}
+                        {{ Form::text('diem', $row->diem, ['class' => 'form-control']) }}
 
 
                         {{ Form::label('lop', 'Lớp') }}
