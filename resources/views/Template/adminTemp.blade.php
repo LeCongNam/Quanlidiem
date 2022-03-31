@@ -351,7 +351,6 @@
                     @yield('editScores')
                     @yield('dashboard')
                     @yield('formSv')
-                    @yield('editScores')
                     @yield('formScore')
             <!-- /.container-fluid -->
 
