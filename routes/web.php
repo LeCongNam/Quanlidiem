@@ -39,13 +39,26 @@ Route::get('/xemdiem',  function(){
 Route::post('/search', 'App\Http\Controllers\mycontroller@getData');
 
 
+Auth::routes();
 
 // Phần dành cho Admin
-Route::get('/admin/dashbord', 'App\Http\Controllers\mycontroller@showAdmin');
+Route::get('/admin/dashboard', 'App\Http\Controllers\mycontroller@showAdmin')
+        ->middleware('checkAdmin::class');
 
-Route::get('/admin/edit/{id}', 'App\Http\Controllers\mycontroller@editDiem');
+Route::get('/admin/edit/{id}', 'App\Http\Controllers\mycontroller@editDiem')->middleware('auth');
 
-Route::post('/admin/update/', 'App\Http\Controllers\mycontroller@updateDiem');
+Route::post('/admin/update/', 'App\Http\Controllers\mycontroller@updateDiem')->middleware('auth');
 
-Route::get('cities/{id}', 'App\Http\Controllers\mycontroller@delete')->name('scores-delete');
+Route::get('cities/{id}', 'App\Http\Controllers\mycontroller@delete')->name('scores-delete')->middleware('auth');
 
+Route::get('/logout','App\Http\Controllers\SessionsController@destroy');
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/', function ()
+{
+    return view('SearchAndLogin');
+});

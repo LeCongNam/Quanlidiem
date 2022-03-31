@@ -1,5 +1,5 @@
-@extends('/Template/template')
-@section('formProduct')
+@extends('/Template/adminTemp')
+@section('editScores')
     <style>
         .error {
             color: red;
@@ -9,10 +9,7 @@
             color: #2ca02c;
         }
 
-        body {
-            background-color: #6b7280;
-            color: #dfdfdf;
-        }
+ 
 
     </style>
 
@@ -23,7 +20,7 @@
 
 
                 {!! Form::open(['url' => '/admin/update', 'files' => true]) !!}
-                <h3>CẬP NHẬT THÔNG TIN KẾT QUẢ HỌC TẬP</h3>
+                <h3 style="text-align: center">CẬP NHẬT THÔNG TIN KẾT QUẢ HỌC TẬP</h3>
                 <hr>
 
                 @if (count($errors) > 0)
@@ -95,3 +92,5 @@
             </div>
         </div>
     </div>
+
+    @endsection
