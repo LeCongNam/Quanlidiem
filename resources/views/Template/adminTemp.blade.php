@@ -22,11 +22,11 @@
 <div id="wrapper">
 
 
-    @include('sidebar')
+    @include('adminLayout/sidebar')
     
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-            @include('navbar')
+            @include('adminLayout/navbar')
            <!-- Nội dung chính -->
                     @yield('editScores')
                     @yield('dashboard')
@@ -34,7 +34,7 @@
                     @yield('formScore')
             <!-- /.container-fluid -->
         </div>
-        @include('footer')
+        @include('adminLayout/footer')
     </div>
 
 </div>
