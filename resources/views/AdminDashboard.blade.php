@@ -38,36 +38,41 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <?php $pos = 0; ?>
+                  @if (count($scores) >0)
+                  @foreach ($scores as $row)
+                  <tr>
 
-                    @foreach ($scores as $row)
-                        <tr>
+                      {{-- <td>{{ $row->id}}</td> --}}
+                      <td>{{ ++$pos }}</td>
+                      <td class="sv name">{{ $row->tensv }}</td>
+                      <td class="sv name">{{ $row->masv }}</td>
+                      <td>{{ $row->tenmh }}</td>
+                      <td>{{ $row->diem }}</td>
+                      <td>{{ $row->sotc }}</td>
+                      <td>{{ $row->lanthi }}</td>
+                      <td>{{ $row->lop }}</td>
+                      <td>{{ $row->tenkhoa }}</td>
+                      <td>
+                          <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">
+                              <i class="fa fa-pen" style="font-size: 10px;"></i>
+                          </a>
+                      </td>
+                      <td>
+                          {{-- href="/admin/delete" --}}
+                          <a class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá?')"
+                              href="{{ route('scores-delete', $row->id) }}">
+                              <i class="fa fa-trash"></i>
+                          </a>
 
-                            {{-- <td>{{ $row->id}}</td> --}}
-                            <td>{{ ++$pos }}</td>
-                            <td class="sv name">{{ $row->tensv }}</td>
-                            <td class="sv name">{{ $row->masv }}</td>
-                            <td>{{ $row->tenmh }}</td>
-                            <td>{{ $row->diem }}</td>
-                            <td>{{ $row->sotc }}</td>
-                            <td>{{ $row->lanthi }}</td>
-                            <td>{{ $row->lop }}</td>
-                            <td>{{ $row->tenkhoa }}</td>
-                            <td>
-                                <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">
-                                    <i class="fa fa-pen" style="font-size: 10px;"></i>
-                                </a>
-                            </td>
-                            <td>
-                                {{-- href="/admin/delete" --}}
-                                <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
-                                    href="{{ route('scores-delete', $row->id) }}">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-                    @endforeach
+                      </td>
+                  </tr>
+                 @endforeach
+                                      
+                  @else
+                      <tr>Không có dữ liệu sinh viên <a href="/form-sv">Thêm ngay</a></tr>
+                  @endif
                 </tbody>
             </table>
         </div>

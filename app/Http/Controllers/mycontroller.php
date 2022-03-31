@@ -223,6 +223,6 @@ class mycontroller extends Controller
         ->where('id', '=', $id)
         ->delete();
 
-        return redirect('/admin/dashbord');
+        return redirect('/admin/dashboard');
     }
 }
