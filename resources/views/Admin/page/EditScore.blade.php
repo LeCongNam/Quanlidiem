@@ -1,4 +1,6 @@
-@extends('/Template/adminTemp')
+@extends('admin/template/adminTemp')
+
+
 @section('editScores')
     <style>
         .error {

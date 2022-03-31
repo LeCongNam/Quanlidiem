@@ -171,7 +171,7 @@ class mycontroller extends Controller
                         ->get();
         // dd($scores);
     
-            return view('AdminDashboard', compact('scores'));
+            return view('admin/page/AdminDashboard', compact('scores'));
     }
 
 
@@ -184,7 +184,7 @@ class mycontroller extends Controller
 
         // dd($scores);
 
-        return view('EditScore',compact('scores'));
+        return view('admin/page/EditScore',compact('scores'));
     }
 
 
@@ -211,7 +211,7 @@ class mycontroller extends Controller
                 ->where('id',$id)
                 ->update(['tenmh'=>$tenmh, 'diem'=>$diem,'lanthi'=>$lanthi]);
 
-            return view('EditScore', ['mess' => 'Cập nhật thành công']);
+            return view('admin/page/EditScore', ['mess' => 'Cập nhật thành công']);
         }
 
         
