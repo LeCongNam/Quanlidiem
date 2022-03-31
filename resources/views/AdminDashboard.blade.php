@@ -71,7 +71,9 @@
                  @endforeach
                                       
                   @else
-                      <tr>Không có dữ liệu sinh viên <a href="/form-sv">Thêm ngay</a></tr>
+                      <tr>
+                          <td colspan="10">Không có dữ liệu sinh viên <a href="/form-sv">Thêm ngay</a></td>
+                      </tr>
                   @endif
                 </tbody>
             </table>
