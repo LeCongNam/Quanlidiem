@@ -54,14 +54,15 @@
                             <td>{{ $row->lop }}</td>
                             <td>{{ $row->tenkhoa }}</td>
                             <td>
-                                <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">Sửa</a>
+                                <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">
+                                    <i class="fa fa-pen" style="font-size: 10px;"></i>
+                                </a>
                             </td>
                             <td>
                                 {{-- href="/admin/delete" --}}
                                 <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
                                     href="{{ route('scores-delete', $row->id) }}">
                                     <i class="fa fa-trash"></i>
-                                    Xoá
                                 </a>
 
                             </td>

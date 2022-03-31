@@ -17,20 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Form nhập thông tin sinh viên
-Route::get('/form-sv', function () {
-    return view('FormSV');
-});
-Route::post('/insert/submit', 'App\Http\Controllers\mycontroller@save_student');
-
-
-// //Form nhập điểm
-Route::get('/form-score',function (){
-    return View('FormScore');
-});
-Route::post('/insert/score', 'App\Http\Controllers\mycontroller@saveScore');
-
-
 //Formxem
 Route::get('/xemdiem',  function(){
     return View('SearchAndLogin');
@@ -52,6 +38,22 @@ Route::post('/admin/update/', 'App\Http\Controllers\mycontroller@updateDiem')->m
 Route::get('cities/{id}', 'App\Http\Controllers\mycontroller@delete')->name('scores-delete')->middleware('auth');
 
 Route::get('/logout','App\Http\Controllers\SessionsController@destroy');
+
+
+
+
+//Form nhập thông tin sinh viên
+Route::get('/form-sv', function () {
+    return view('FormSV');
+});
+Route::post('/insert/submit', 'App\Http\Controllers\mycontroller@save_student');
+
+
+// //Form nhập điểm
+Route::get('/form-score',function (){
+    return View('FormScore');
+});
+Route::post('/insert/score', 'App\Http\Controllers\mycontroller@saveScore');
 
 
 

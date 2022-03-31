@@ -1,5 +1,5 @@
-@extends('/Template/template')
-@section('formProduct')
+@extends('/Template/adminTemp')
+@section('formSv')
     <style>
         .error {
             color: red;
@@ -70,3 +70,6 @@
             </div>
         </div>
     </div>
+
+        
+    @endsection
