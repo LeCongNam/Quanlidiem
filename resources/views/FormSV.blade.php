@@ -3,6 +3,7 @@
     <style>
         .error {
             color: red;
+            font-size: 15px !important;
         }
 
         .success {

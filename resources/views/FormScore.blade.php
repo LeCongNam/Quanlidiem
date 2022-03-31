@@ -3,6 +3,7 @@
     <style>
         .error {
             color: red;
+            font-size: 15px !important;
         }
 
         .success {
@@ -48,7 +49,7 @@
                 {{ Form::number('sotc', 1, ['class' => 'form-control']) }}
 
                 {{ Form::label('diem', 'Điểm') }}
-                {{ Form::number('diem', 1,['class' => 'form-control']) }}
+                {{ Form::text('diem', 1,['class' => 'form-control']) }}
 
 
                 {{ Form::label('lop', 'Lớp') }}

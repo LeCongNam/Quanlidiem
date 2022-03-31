@@ -57,7 +57,7 @@ class mycontroller extends Controller
 
         $message = [];
         $validator = Validator::make($request->all(), [
-            'masv' => 'required | size:4 , "masv"',
+            'masv' => 'required | size:4 ',
             'tenmh' => 'required ',
             'diem' => 'required |numeric|min:0 | max:10',
             'sotc' => 'required |numeric|min:1',

@@ -3,6 +3,7 @@
     <style>
         .error {
             color: red;
+            font-size: 15px !important;
         }
 
         .success {
@@ -27,7 +28,7 @@
                     LỖI <br>
                     @foreach ($errors->all() as $err)
                         <div class="error">
-                            <b> {{ $err }}</b>
+                            <span style="font-size: 10px"> {{ $err }}</span>
                         </div><br>
                     @endforeach
                 @endif

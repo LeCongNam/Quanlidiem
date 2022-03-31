@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement()->nullable();
             $table->string('tenmh');
             $table->integer('sotc');
-            $table->integer('diem');
+            $table->float('diem');
             $table->string('masv');
             $table->string('lop');
             $table->integer('lanthi');
