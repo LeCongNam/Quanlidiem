@@ -22,19 +22,20 @@
 <div id="wrapper">
 
 
-    @include('adminLayout/sidebar')
+    @include('admin/adminLayout/sidebar')
     
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-            @include('adminLayout/navbar')
+            @include('admin/adminLayout/navbar')
            <!-- Nội dung chính -->
                     @yield('editScores')
                     @yield('dashboard')
                     @yield('formSv')
                     @yield('formScore')
+                    @yield('listuser')
             <!-- /.container-fluid -->
         </div>
-        @include('adminLayout/footer')
+        @include('admin/adminLayout/footer')
     </div>
 
 </div>

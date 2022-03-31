@@ -1,5 +1,5 @@
-@extends('/Template/adminTemp')
-@section('dashboard')
+@extends('admin/template/adminTemp')
+@section('listuser')
 
     <link rel="stylesheet" href="/css/diem.css">
 
@@ -18,7 +18,7 @@
     {{-- Kết quả học tập --}}
     <div class="container">
         <div class="row">
-            <h4 class="d-flex justify-content-center mb-5 mt-4">Kết Quả học tập của sinh viên</h4>
+            <h4 class="d-flex justify-content-center mb-5 mt-4">Danh sách User</h4>
         </div>
         <div class="row">
             <table class="table table-striped">
@@ -26,8 +26,8 @@
                     <tr>
                         {{-- 'tenmh','sotc','lanthi','diem','students.tensv','.students.lop','students.tenkhoa' --}}
                         <th scope="col">#</th>
-                        <th scope="col">Tên sinh viên</th>
-                        <th scope="col">Mã số sinh viên</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col"></th>
                         <th scope="col">Tên môn học</th>
                         <th scope="col">Điểm</th>
                         <th scope="col">Số tín chỉ</th>

@@ -44,14 +44,14 @@ Route::get('/logout','App\Http\Controllers\SessionsController@destroy');
 
 //Form nhập thông tin sinh viên
 Route::get('/form-sv', function () {
-    return view('FormSV');
+    return view('admin/page/FormSV');
 });
 Route::post('/insert/submit', 'App\Http\Controllers\mycontroller@save_student');
 
 
 // //Form nhập điểm
 Route::get('/form-score',function (){
-    return View('FormScore');
+    return View('admin/page/FormScore');
 });
 Route::post('/insert/score', 'App\Http\Controllers\mycontroller@saveScore');
 
