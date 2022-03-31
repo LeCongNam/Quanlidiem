@@ -1,0 +1,41 @@
+ul{
+    list-style: none;
+}
+
+
+span{
+    color: #0002A8;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+b{
+    text-transform: capitalize;
+}
+
+li{
+    margin: 10px 0;
+}
+
+.title{
+    
+}
+
+.wrap-info{
+    border: 3px solid blue;
+    padding: 20px 0;
+    border-radius: 20px;
+}
+
+.haff{
+    transform: rotate(90deg);
+    width: 246px;
+    height: 2px;
+    background-color: blue;
+    margin-top: 101px;
+}
+
+.imgsv{
+    width: 200px;
+    border-radius: 10px;
+}
