@@ -19,11 +19,11 @@ class mycontroller extends Controller
 
         $message = [];
         $validator = Validator::make($request->all(), [
-            'masv' => 'required | size:4 | unique:students, "masv"',
+            'masv' => 'required | size:9 | unique:students, "masv"',
             'tensv' => 'required | max:100 | unique:students, "tensv"',
             'ngaysinh' => 'required ',
             'noisinh' => 'required ',
-            'lop' => 'required ',
+            'malop' => 'required |size:7',
             'tenkhoa' => 'required ',
             'hinhsv' => 'required | mimes: jpeg,jpg, png, gif | max:1024'
         ], $message);
@@ -35,7 +35,7 @@ class mycontroller extends Controller
             $tensv = $request->input('tensv');
             $ngaysinh = $request->input('ngaysinh');
             $noisinh = $request->input('noisinh');
-            $lop = $request->input('lop');
+            $malop = $request->input('malop');
             $khoa = $request->input('tenkhoa');
             $hinh = $request->input('hinhsv');
 
@@ -43,9 +43,9 @@ class mycontroller extends Controller
             $hinh = $request->file('hinhsv');
             $storagePath = $hinh->move('Images', date('dmYhsi') . '_' . $hinh->getClientOriginalName());
 
-            DB::insert('insert into students(masv, tensv, hinhsv, ngaysinh, noisinh ,lop, tenkhoa)
-            values (?,?,?,?,?,?,?)', [$masv, $tensv, $storagePath, $ngaysinh, $noisinh, $lop, $khoa]);
-            return view('FormSV', ['mess' => 'OK']);
+            DB::insert('insert into students(masv, tensv, hinhsv, ngaysinh, noisinh ,malop, tenkhoa)
+            values (?,?,?,?,?,?,?)', [$masv, $tensv, $storagePath, $ngaysinh, $noisinh, $malop, $khoa]);
+            return view('admin/page/FormSV', ['mess' => 'OK']);
         }
     }
 
@@ -57,7 +57,7 @@ class mycontroller extends Controller
 
         $message = [];
         $validator = Validator::make($request->all(), [
-            'masv' => 'required | size:4 ',
+            'masv' => 'required | size:9 ',
             'tenmh' => 'required ',
             'diem' => 'required |numeric|min:0 | max:10',
             'sotc' => 'required |numeric|min:1',
@@ -77,7 +77,7 @@ class mycontroller extends Controller
 
             DB::insert('insert into scores(id,tenmh, sotc,   diem,   masv,   lop,  lanthi)
                     values (?,?,?,?,?,?,?)',         [null, $tenmh, $sotc, $diem,  $masv,  $lop, $lanthi]);
-            return view('FormScore', ['mess' => 'OK']);
+            return view('admin/page/FormScore', ['mess' => 'OK']);
         }
     }
 
@@ -99,7 +99,7 @@ class mycontroller extends Controller
 
         $message = [];
         $validator = Validator::make($request->all(), [
-            'masv' => 'required | size:4',
+            'masv' => 'required | size:9',
         ], $message);
 
 
@@ -133,9 +133,10 @@ class mycontroller extends Controller
     {
         // Query data by database
         $scores = DB::table('scores')
-            ->select('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', '.students.lop', 'students.tenkhoa', 'students.masv')
+            ->select('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', 'class.tenlop', 'students.tenkhoa', 'students.masv')
             ->join('students', 'students.masv', '=', 'scores.masv')
-            ->groupBy('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', '.students.lop', 'students.tenkhoa', 'students.masv')
+            ->join('class', 'students.malop', '=', 'class.malop')
+            ->groupBy('scores.id', 'tenmh', 'sotc', 'lanthi', 'diem', 'students.tensv', 'class.tenlop', 'students.tenkhoa', 'students.masv')
             ->get();
         // dd($scores);
 
@@ -227,5 +228,30 @@ class mycontroller extends Controller
             ->delete();
 
         return redirect('/admin/list-user');
+    }
+
+
+
+    public function insertClass(Request $request)
+    {
+        // Get All Value from Form
+        // dd($request->all());
+
+        $message = [];
+        $validator = Validator::make($request->all(), [
+            'malop' => 'required | size:7| unique:class, "malop"',
+            'tenlop' => 'required | max:100',
+        ], $message);
+
+        if ($validator->fails()) {
+            return redirect('/form-class')->withErrors($validator)->withInput();
+        } else {
+            $malop = $request->input('malop');
+            $tenlop = $request->input('tenlop');
+
+            DB::insert('insert into class(malop, tenlop)
+            values (?,?)', [$malop,$tenlop]);
+            return view('admin/page/FormClass', ['mess' => 'OK']);
+        }
     }
 }

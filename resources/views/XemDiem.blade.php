@@ -21,7 +21,7 @@
                             <b>{{date('d-m-Y', strtotime($row->ngaysinh))}}</b>
                         </li>
                         <li>
-                            <span>ngày sinh:</span>
+                            <span>Khoa:</span>
                             <b>{{$row->tenkhoa}}</b>
                         </li>
                         <li>
@@ -30,7 +30,7 @@
                         </li>
                         <li>
                             <span>Lớp: </span>
-                            <b>{{$row->lop}}</b>
+                            <b>{{$row->malop}}</b>
                         </li>
                         @endforeach
                     </ul>

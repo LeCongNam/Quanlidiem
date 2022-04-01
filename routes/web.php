@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/xemdiem',  function () {
     return View('SearchAndLogin');
 });
-
 Route::post('/search', 'App\Http\Controllers\mycontroller@getData');
+
 
 
 Auth::routes();
@@ -35,9 +35,9 @@ Route::get('/admin/edit/{id}', 'App\Http\Controllers\mycontroller@editDiem')->mi
 
 Route::post('/admin/update/', 'App\Http\Controllers\mycontroller@updateDiem')->middleware('checkAdmin::class');
 
-Route::get('cities/{id}', 'App\Http\Controllers\mycontroller@delete')->name('scores-delete')->middleware('checkAdmin::class');
+Route::get('scores/{id}', 'App\Http\Controllers\mycontroller@delete')->name('scores-delete');
 
-Route::get('cities/{id}', 'App\Http\Controllers\mycontroller@deleteUser')->name('user-delete')->middleware('checkAdmin::class');
+Route::get('user/{id}', 'App\Http\Controllers\mycontroller@deleteUser')->name('user-delete')->middleware('checkAdmin::class');
 
 Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy');
 
@@ -61,15 +61,18 @@ Route::post('/insert/submit', 'App\Http\Controllers\mycontroller@save_student')-
 Route::get('/form-score', function () {
     return View('admin/page/FormScore');
 });
-
 Route::post('/insert/score', 'App\Http\Controllers\mycontroller@saveScore');
 
-// vẽ biểu đồ
-Route::get('/admin/chart', 'App\Http\Controllers\AdminChart@index');
+
+//Form nhập lớp
+Route::get('/form-class', function () {
+    return View('admin/page/FormClass');
+});
+Route::post('/insert/class', 'App\Http\Controllers\mycontroller@insertClass');
 
 
+// Trang home dành cho user
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::get('/', function () {
     return view('SearchAndLogin');

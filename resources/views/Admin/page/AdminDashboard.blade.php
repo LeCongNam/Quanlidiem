@@ -52,7 +52,7 @@
                       <td>{{ $row->diem }}</td>
                       <td>{{ $row->sotc }}</td>
                       <td>{{ $row->lanthi }}</td>
-                      <td>{{ $row->lop }}</td>
+                      <td>{{ $row->tenlop }}</td>
                       <td>{{ $row->tenkhoa }}</td>
                       <td>
                           <a href="/admin/edit/{{ $row->id }}" class="btn btn-primary">
