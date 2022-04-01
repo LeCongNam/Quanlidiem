@@ -56,8 +56,8 @@
                 {{ Form::text('noisinh', '', ['class' => 'form-control', 'placeholder' => 'Nhập nơi sinh']) }}
 
 
-                {{ Form::label('lop', 'Lớp') }}
-                {{ Form::text('lop', '', ['class' => 'form-control', 'placeholder' => 'Nhập Lớp']) }}
+                {{ Form::label('malop', 'mã Lớp') }}
+                {{ Form::text('malop', '', ['class' => 'form-control', 'placeholder' => 'Nhập mã Lớp']) }}
 
                 {{ Form::label('tenkhoa', 'Khoa') }}
                 {!! Form::select('tenkhoa',

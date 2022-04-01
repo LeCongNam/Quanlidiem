@@ -82,9 +82,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/form-class">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>Nhập Lớp</span></a>
     </li>
 
     <!-- Nav Item - Tables -->

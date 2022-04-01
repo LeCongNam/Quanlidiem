@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->string('masv')->unique();
-            $table->string('tensv');
-            $table->string('hinhsv');
-            $table->string('ngaysinh');
-            $table->string('noisinh');
-            $table->string('lop');
-            $table->string('tenkhoa');
-            $table->timestamps();
+        Schema::create('class', function (Blueprint $table) {
+            $table->string('malop',7)->primary();
+            $table->string('tenlop',100);
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('class');
     }
 };

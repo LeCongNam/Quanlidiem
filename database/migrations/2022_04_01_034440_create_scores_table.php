@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('tenmh');
             $table->integer('sotc');
             $table->float('diem');
-            $table->string('masv');
+            $table->string('masv',9);
             $table->string('lop');
             $table->integer('lanthi');
 
+            $table->foreign('masv')->references('masv')->on('students');
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('scores');
     }
 };
